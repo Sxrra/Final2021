@@ -148,6 +148,64 @@ The effectiveness of the Covid91 vaccine are `r FemaleEffect`. The confidence in
 
 # Drug Users
 
+
+```{r}
+DrugUsers <- filter(Covid91, DrugUser == "yes")
+```
+
+
+```{r}
+barchartGC(~infected + treatment,data=DrugUsers)
+barchartGC(~infected + treatment,data=DrugUsers, type="percent")
+
+```
+
+
+The bar chart shows that majority of the drug users who consumed the placebo became very sick rather than healthy however the people who took the drug were more healthy than they were sick.
+
+## Numerical Results
+```{r}
+table1 <- xtabs(~infected + treatment, data=DrugUsers)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+It seems that 48% of drug users who took the drug ended up not being sick leaving 33% sick whereas 52% remain healthy leaving 67% of drug users who consumed the placebo became sick. This shows that the placebo took more effect in a bad way for drugusers. 
+
+
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+Drugmod <- fisher.test(table1)
+```
+
+
+According to the Fisher's test, the p-value is small leaving it at 0.003. This indicates that we would have to reject the null hypothesis. However, drug users did get sick more than than being healthy when consuming the placebo.
+
+```{r}
+DrugEstimate <- Drugmod$estimate
+Druglow <- Drugmod$conf.int[1]
+Drughigh <- Drugmod$conf.int[2]
+Druglowprob <- Druglow / 1+ Druglow
+Drugloweffect <- Druglow * 100
+Drughighprob <- Drughigh / 1+ Drughigh
+Drughigheffect <-Drughigh * 100
+Drugprob <- DrugEstimate / 1+ DrugEstimate
+DrugEffect <- Drugprob * 100
+options(digits = 1)
+```
+
+
+
+
+The effectiveness of the Covid91 vaccine are `r DrugEffect`. The confidence interval for males is `r Drugloweffect` to `r Drughigheffect`.
+
+
 # LGBTQ
 
 # Conclusions and recommendations
