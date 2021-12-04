@@ -1,7 +1,7 @@
 ---
 title: "Covid19 vaccine study Fall2021"
-author: "Put your name here!"
-date: "`r Sys.Date()`"
+author: "Sierra Green"
+date: "`12/03/2021`"
 output: 
   html_document:
     toc: true
@@ -22,7 +22,63 @@ Covid91 <- TheData %>% mutate(across(where(is.character),as.factor))
 A new  preventative vaccine (covid91) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups consisting of Males, Females, just the drug users, and just those in the LGBTQ community. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Part of the information you need to compute is the so-called effectiveness of the drug for each subgroup of people. Include a 95% confidence interval of the effectiveness for each different subgroup. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
 # Males
+```{r}
+Males<- filter(Covid91,sex == "Man")
+```
 
+```{r}
+barchartGC(~treatment + infected,data=Males)
+barchartGC(~treatment + infected,data=Males, type="percent")
+
+```
+
+
+The bar chart shows us that those who took the placebo got sick more than the males who took the Covid91. We can see that the pink bar for the placebo is almost double in size compared to the drug. This indicates is effective for the males group.
+
+
+
+## Numerical Results
+```{r}
+table1 <- xtabs(~infected + treatment, data=Males)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+
+33.11% of sick males had the treatment, and 66.89% of males got sick when they took the placebo. This is a 2:1 difference and lets us know that the treatment is actually working.
+
+
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+Malemod <- fisher.test(table1)
+```
+
+
+
+According to the Fisher's test, the p-value is extremely small. This proves we would have to reject the null hypothesis. There is difference between the placebo and those who took the drug.
+
+
+
+```{r}
+MaleEstimate <- Malemod$estimate
+Malelow <- Malemod$conf.int[1]
+Malehigh <- Malemod$conf.int[2]
+Malelowprob <- Malelow / 1+ Malelow
+Maleloweffect <- Malelow * 100
+Malehighprob <- Malehigh / 1+ Malehigh
+Malehigheffect <- Malehigh * 100
+Maleprob <- MaleEstimate / 1+ MaleEstimate
+MaleEffect <- Maleprob * 100
+options(digits = 1)
+```
+
+The effectiveness of the Covid91 vaccine are `r MaleEffect`. The confidence interval for males is `r Maleloweffect` to `r Malehigheffect`.
 
 # Females
 
