@@ -80,7 +80,7 @@ MaleEffect <- Maleprob * 100
 options(digits = 1)
 ```
 
-The effectiveness of the Covid91 vaccine are `r MaleEffect`. The confidence interval for males is `r Maleloweffect` to `r Malehigheffect`.
+The effectiveness of the Covid91 vaccine is `r MaleEffect`. The confidence interval for males is `r Maleloweffect` to `r Malehigheffect`.
 
 # Females
 
@@ -108,7 +108,7 @@ colPerc(table1)
 ```
 
 
-This states that 58% of females who took the drug got very sick and only 42% gotten sick from taking the placebo. The vaccine is clearly not taking effect for the females.
+This states that 58% of females who took the drug got very sick and only 42% got sick from taking the placebo. The vaccine is clearly not taking effect for the females.
 
 
 
@@ -163,7 +163,7 @@ barchartGC(~infected + treatment,data=DrugUsers, type="percent")
 ```
 
 
-The bar chart shows that majority of the drug users who consumed the placebo became very sick rather than healthy however the people who took the drug were more healthy than they were sick.
+The bar chart shows that the majority of the drug users who consumed the placebo became very sick rather than healthy, however the people who took the drug were more healthy than they were sick.
 
 ## Numerical Results
 ```{r}
@@ -173,7 +173,7 @@ colPerc(table1)
 ```
 
 
-It seems that 48% of drug users who took the drug ended up not being sick leaving 33% sick whereas 52% remain healthy leaving 67% of drug users who consumed the placebo became sick. This shows that the placebo took more effect in a bad way for drugusers. 
+It seems that 48% of drug users who took the drug ended up not being sick leaving 33% sick whereas 52% remain healthy leaving 67% of drug users who consumed the placebo became sick. This shows that the placebo took more effect in a bad way for drug users. 
 
 
 
@@ -187,7 +187,7 @@ Drugmod <- fisher.test(table1)
 ```
 
 
-According to the Fisher's test, the p-value is small leaving it at 0.003. This indicates that we would have to reject the null hypothesis. However, drug users did get sick more than than being healthy when consuming the placebo.
+According to the Fisher's test, the p-value is small leaving it at 0.003. This indicates that we would have to reject the null hypothesis. However, drug users did get sick more than being healthy when consuming the placebo.
 
 
 ## Calculating Effectiveness
@@ -208,7 +208,7 @@ options(digits = 1)
 
 
 
-The effectiveness of the Covid91 vaccine are `r DrugEffect`. The confidence interval for males is `r Drugloweffect` to `r Drughigheffect`.
+The effectiveness of the Covid91 vaccine is `r DrugEffect`. The confidence interval for males is `r Drugloweffect` to `r Drughigheffect`.
 
 
 # LGBTQ
@@ -225,7 +225,7 @@ barchartGC(~infected + treatment,data=LGBTQ, type="percent")
 
 
 
-According to the bar chart, it seems as though the placebo took affect in a good way rather than the regular drug. More people ended being healthy than sick when taking the placebo, however, when the regular drug was consumed, it shows that more people got sick from it.
+According to the bar chart, it seems as though the placebo took effect in a good way rather than the regular drug. More people ended being healthier than sick when taking the placebo, however, when the regular drug was consumed, it shows that more people got sick from it.
 
 
 
@@ -251,7 +251,7 @@ LGBTQmod <- fisher.test(table1)
 
 
 
-The p-value is at a 0 which means that we would reject the null hypothesis. The placebo did work for majority of the LGBTQ people.
+The p-value is at a 0 which means that we would reject the null hypothesis. The placebo did work for the majority of the LGBTQ people.
 
 
 ## Calculating Effectivenss
@@ -270,8 +270,19 @@ options(digits = 1)
 ```
 
 
-The effectiveness of the Covid91 vaccine are `r LGBTQEffect`. The confidence interval for males is `r LGBTQloweffect` to `r LGBTQhigheffect`.
+The effectiveness of the Covid91 vaccine is `r LGBTQEffect`. The confidence interval for males is `r LGBTQloweffect` to `r LGBTQhigheffect`.
 
 
 
 # Conclusions and recommendations
+
+
+
+For the MALES, the bar chart shows us that those who took the placebo got sick more than the males who took the Covid91. We can see that the pink bar for the placebo is almost double in size compared to the drug. This indicates it is effective for the males group. 33.11% of sick males had the treatment, and 66.89% of males got sick when they took the placebo. This is a 2:1 difference and lets us know that the treatment is actually working. According to the Fisher's test, the p-value is extremely small. This proves we would have to reject the null hypothesis. There is a difference between the placebo and those who took the drug. The effectiveness of the Covid91 vaccine is `r MaleEffect`. The confidence interval for males is `r Maleloweffect` to `r Malehigheffect`. 
+
+According to the chart for FEMALES, it seems as though the vaccine is not going well for the females. The blue bar indicates that the females are getting sick rather than healthy; more than 50%. This states that 58% of females who took the drug got very sick and only 42% got sick from taking the placebo. The vaccine is clearly not taking effect for the females. The p-vale is again very small (6e-04). Therefore, we would consider rejecting the null hypothesis. This data took a turn in a very bad way. Majority of the females were getting sick. The effectiveness of the Covid91 vaccine are `r FemaleEffect`. The confidence interval for males is `r Femaleloweffect` to `r Femalehigheffect`. 
+
+For DRUG USERS, the bar chart shows that the majority of the drug users who consumed the placebo became very sick rather than healthy, however the people who took the drug were more healthy than they were sick. It seems that 48% of drug users who took the drug ended up not being sick leaving 33% sick whereas 52% remain healthy leaving 67% of drug users who consumed the placebo became sick. This shows that the placebo took more effect in a bad way for drug users. According to the Fisher's test, the p-value is small, leaving it at 0.003. This indicates that we would have to reject the null hypothesis. However, drug users did get sick more than being healthy when consuming the placebo. The effectiveness of the Covid91 vaccine is `r DrugEffect`. The confidence interval for males is `r Drugloweffect` to `r Drughigheffect`. 
+
+Lastly, according to the bar chart for LGBTQ, it seems as though the placebo took effect in a good way rather than the regular drug. More people ended up being healthier than sick when taking the placebo, however, when the regular drug was consumed, it shows that more people got sick from it. The table represents that 71% of people got sick leaving 51% of them healthy when the drug was consumed. When the placebo was consumed, it left 29% of them sick and 51% of them healthy. The placebo seemed to work. The p-value is at a 0 which means that we would reject the null hypothesis. The placebo did work for the majority of the LGBTQ people. The effectiveness of the Covid91 vaccine is `r LGBTQEffect`. The confidence interval for males is `r LGBTQloweffect` to `r LGBTQhigheffect`.
+
