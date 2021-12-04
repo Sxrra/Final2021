@@ -133,7 +133,7 @@ The p-vale is again very small (6e-04). Therefore, we would consider rejecting t
 FemaleEstimate <- Femalemod$estimate
 Femalelow <- Femalemod$conf.int[1]
 Femalehigh <- Femalemod$conf.int[2]
-Femalelowprob <- Femalelow / 1+ Malelow
+Femalelowprob <- Femalelow / 1+ Femalelow
 Femaleloweffect <- Femalelow * 100
 Femalehighprob <- Femalehigh / 1+ Femalehigh
 Femalehigheffect <- Femalehigh * 100
