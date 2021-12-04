@@ -82,6 +82,70 @@ The effectiveness of the Covid91 vaccine are `r MaleEffect`. The confidence inte
 
 # Females
 
+```{r}
+Females <- filter(Covid91, sex == "Woman")
+```
+
+
+```{r}
+barchartGC(~infected + treatment,data=Females)
+barchartGC(~infected + treatment,data=Females, type="percent")
+
+```
+
+
+According to the chart, it seems as though the vaccine is not going well for the females. The blue bar indicates that the females are getting sick than healthy; more than 50%.
+
+
+
+## Numerical Results
+```{r}
+table1 <- xtabs(~infected + treatment, data=Females)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+This states that 58% of females who took the drug got very sick and only 42% gotten sick from taking the placebo. The vaccine is cleary not taking effect for the females.
+
+
+
+
+
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+Femalemod <- fisher.test(table1)
+```
+
+
+
+The p-vale is again very small (6e-04). Therefore, we would consider rejecting the null hypothesis. This data took a turn in a very bad way. Majority of the females were getting sick.
+
+
+
+
+```{r}
+FemaleEstimate <- Femalemod$estimate
+Femalelow <- Femalemod$conf.int[1]
+Femalehigh <- Femalemod$conf.int[2]
+Femalelowprob <- Femalelow / 1+ Malelow
+Femaleloweffect <- Femalelow * 100
+Femalehighprob <- Femalehigh / 1+ Femalehigh
+Femalehigheffect <- Femalehigh * 100
+Femaleprob <- FemaleEstimate / 1+ FemaleEstimate
+FemaleEffect <- Femaleprob * 100
+options(digits = 1)
+```
+
+
+The effectiveness of the Covid91 vaccine are `r FemaleEffect`. The confidence interval for males is `r Femaleloweffect` to `r Femalehigheffect`.
+
+
 # Drug Users
 
 # LGBTQ
