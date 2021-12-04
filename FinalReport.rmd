@@ -65,6 +65,8 @@ According to the Fisher's test, the p-value is extremely small. This proves we w
 
 
 
+## Calculating Effectiveness
+
 ```{r}
 MaleEstimate <- Malemod$estimate
 Malelow <- Malemod$conf.int[1]
@@ -106,7 +108,7 @@ colPerc(table1)
 ```
 
 
-This states that 58% of females who took the drug got very sick and only 42% gotten sick from taking the placebo. The vaccine is cleary not taking effect for the females.
+This states that 58% of females who took the drug got very sick and only 42% gotten sick from taking the placebo. The vaccine is clearly not taking effect for the females.
 
 
 
@@ -127,7 +129,7 @@ Femalemod <- fisher.test(table1)
 The p-vale is again very small (6e-04). Therefore, we would consider rejecting the null hypothesis. This data took a turn in a very bad way. Majority of the females were getting sick.
 
 
-
+## Calculating Effectiveness
 
 ```{r}
 FemaleEstimate <- Femalemod$estimate
@@ -186,6 +188,9 @@ Drugmod <- fisher.test(table1)
 
 
 According to the Fisher's test, the p-value is small leaving it at 0.003. This indicates that we would have to reject the null hypothesis. However, drug users did get sick more than than being healthy when consuming the placebo.
+
+
+## Calculating Effectiveness
 
 ```{r}
 DrugEstimate <- Drugmod$estimate
@@ -249,6 +254,7 @@ LGBTQmod <- fisher.test(table1)
 The p-value is at a 0 which means that we would reject the null hypothesis. The placebo did work for majority of the LGBTQ people.
 
 
+## Calculating Effectivenss
 
 ```{r}
 LGBTQEstimate <- LGBTQmod$estimate
@@ -269,4 +275,3 @@ The effectiveness of the Covid91 vaccine are `r LGBTQEffect`. The confidence int
 
 
 # Conclusions and recommendations
-
