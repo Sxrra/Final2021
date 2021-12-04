@@ -208,5 +208,65 @@ The effectiveness of the Covid91 vaccine are `r DrugEffect`. The confidence inte
 
 # LGBTQ
 
+```{r}
+LGBTQ <- filter(Covid91, LGBTQ == "gay")
+```
+
+```{r}
+barchartGC(~infected + treatment,data=LGBTQ)
+barchartGC(~infected + treatment,data=LGBTQ, type="percent")
+```
+
+
+
+
+According to the bar chart, it seems as though the placebo took affect in a good way rather than the regular drug. More people ended being healthy than sick when taking the placebo, however, when the regular drug was consumed, it shows that more people got sick from it.
+
+
+
+## Numerical Results
+```{r}
+table1 <- xtabs(~infected + treatment, data=LGBTQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+The table represents that 71% of people got sick leaving 51% of them healthy when the drug was consumed. When the placebo was consumed, it left 29% of them sick and 51% of them healthy. The placebo seemed to work.
+
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+LGBTQmod <- fisher.test(table1)
+```
+
+
+
+The p-value is at a 0 which means that we would reject the null hypothesis. The placebo did work for majority of the LGBTQ people.
+
+
+
+```{r}
+LGBTQEstimate <- LGBTQmod$estimate
+LGBTQlow <- LGBTQmod$conf.int[1]
+LGBTQhigh <- LGBTQmod$conf.int[2]
+LGBTQlowprob <- LGBTQlow / 1+ LGBTQlow
+LGBTQloweffect <- LGBTQlow * 100
+LGBTQhighprob <- LGBTQhigh / 1+ LGBTQhigh
+LGBTQhigheffect <-LGBTQhigh * 100
+LGBTQprob <- LGBTQEstimate / 1+ LGBTQEstimate
+LGBTQEffect <- LGBTQprob * 100
+options(digits = 1)
+```
+
+
+The effectiveness of the Covid91 vaccine are `r LGBTQEffect`. The confidence interval for males is `r LGBTQloweffect` to `r LGBTQhigheffect`.
+
+
+
 # Conclusions and recommendations
 
